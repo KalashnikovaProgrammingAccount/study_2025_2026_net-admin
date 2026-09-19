@@ -117,9 +117,9 @@ header-includes:
 
 ![Создание папок и настроек днс](image/14.png){#fig:014}
 
-Отредактируем файл nsandryushin.net (рис. [-@fig:015]).
+Отредактируем файл dvkalashnikova.net (рис. [-@fig:015]).
 
-![nsandryushin.net](image/15.png){#fig:015}
+![dvkalashnikova.net](image/15.png){#fig:015}
 
 Теперь посмотрим на файлы из папки rz (рис. [-@fig:016]).
 
