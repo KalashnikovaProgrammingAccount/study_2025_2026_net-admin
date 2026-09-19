@@ -1,0 +1,141 @@
+---
+title: "Отчёт о лабораторной работе"
+subtitle: "Лабораторная работа 2"
+author: "Калашникова Дарья Викторовна"
+lang: ru-RU
+toc-title: "Содержание"
+date: today
+
+format:
+  pdf:
+    documentclass: scrreprt
+    papersize: a4
+    fontsize: 12pt
+    linestretch: 1.5
+    toc: true
+    toc-depth: 2
+    lof: true
+    lot: true
+    number-sections: true
+    indent: true
+    pdf-engine: lualatex
+    include-in-header:
+      text: |
+        \usepackage{indentfirst}
+        \usepackage{float}
+        \floatplacement{figure}{H}
+    mainfont: "IBM Plex Serif"
+    romanfont: "IBM Plex Serif"
+    sansfont: "IBM Plex Sans"
+    monofont: "IBM Plex Mono"
+    mathfont: "STIX Two Math"
+
+crossref:
+  fig-title: "Рис."
+  tbl-title: "Таблица"
+  lst-title: "Листинг"
+  fig-prefix: "рис."
+  tbl-prefix: "табл."
+  lst-prefix: "лист."
+
+bibliography: bib/cite.bib
+csl: pandoc/csl/gost-r-7-0-5-2008-numeric.csl
+---
+
+# Цель работы
+
+Приобретение практических навыков по установке и конфигурированию DNS-сервера, усвоение принципов работы системы доменных имён.
+
+# Выполнение лабораторной работы
+
+Для начала запустим виртуальную машину через vagrant (@fig-001).
+
+![Запуск ВМ](image/1.png){#fig-001}
+
+Теперь скачаем пакет bind utils (@fig-002).
+
+![Скачивание пакетов](image/2.png){#fig-002}
+
+Используем команду dig для проверки сервисов яндекса (@fig-003).
+
+![dig ya.ru](image/3.png){#fig-003}
+
+Посморим на содержание файлов конфигурации dns в etc (@fig-004).
+
+![Файлы конфигурации](image/4.png){#fig-004}
+
+Просморим теперь файл named.ca (@fig-005).
+
+![named.ca](image/5.png){#fig-005}
+
+Содержимое named.localhost и named.loopback (@fig-006).
+
+![named.localhost и named.loopback](image/6.png){#fig-006}
+
+Запустим теперь named и осуществим снова dig yandex.ru (@fig-007).
+
+![Запуск named](image/7.png){#fig-007}
+
+Теперь настроим порт eth0 (@fig-008).
+
+![eth0](image/8.png){#fig-008}
+
+Откроем и отредактируем named.conf (@fig-009).
+
+![named.conf](image/9.png){#fig-009}
+
+Установим правила фаервола (@fig-010).
+
+![Правила фаервола](image/10.png){#fig-010}
+
+Теперь переместим файл с настройкой конфига (@fig-011).
+
+![перемещение файла](image/11.png){#fig-011}
+
+И отредактируем наш файл под наши параметры (@fig-012).
+
+![Редактирование файла](image/12.png){#fig-012}
+
+То же самое сделаем с файлом зон (@fig-013).
+
+![Файл зон](image/13.png){#fig-013}
+
+Создадим папки с настройками днс (@fig-014).
+
+![Создание папок и настроек днс](image/14.png){#fig-014}
+
+Отредактируем файл nsandryushin.net (@fig-015).
+
+![nsandryushin.net](image/15.png){#fig-015}
+
+Теперь посмотрим на файлы из папки rz (@fig-016).
+
+![Папка rz](image/16.png){#fig-016}
+
+Отредактируем следующим образом (@fig-017).
+
+![Редактирование файла](image/17.png){#fig-017}
+
+Настроим Selinux (@fig-018).
+
+![Selinux](image/18.png){#fig-018}
+
+Через dig попробуем подключиться к собственному днс (@fig-019).
+
+![dig](image/19.png){#fig-019}
+
+Оформим нашу работу как конфигурацию для вагранта (@fig-020).
+
+![Конфиг вагрант](image/20.png){#fig-020}
+
+И напишем скрипт для загрузки вагранта (@fig-021).
+
+![скрипт](image/21.png){#fig-021}
+
+И в vagrantfile будем загружать этот скрипт (@fig-022).
+
+![vagrantfile](image/22.png){#fig-022}
+
+# Выводы
+
+В результате выполнения работы были получены навыки настройки днс
