@@ -128,11 +128,11 @@ header-includes:
 
 ![Создание папок и настроек днс](image/14.png){#fig:014 width=60%}
 
-## nsandryushin.net
+## dvkalashnikova.net
 
-Отредактируем файл nsandryushin.net.
+Отредактируем файл dvkalashnikova.net.
 
-![nsandryushin.net](image/15.png){#fig:015 width=60%}
+![dvkalashnikova.net](image/15.png){#fig:015 width=60%}
 
 ## Папка rz
 
