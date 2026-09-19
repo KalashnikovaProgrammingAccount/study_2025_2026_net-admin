@@ -166,7 +166,7 @@ header-includes:
 
 ## Обновление файла
 
-Обновим файл /etc/named/nsandryushin.net, добавив туда dhcp.
+Обновим файл /etc/named/dvkalashnikova.net, добавив туда dhcp.
 
 ![Обновление файла](image/21.png){#fig:021 width=40%}
 
