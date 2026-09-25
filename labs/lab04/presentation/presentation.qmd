@@ -1,0 +1,174 @@
+---
+title: "Презентация"
+subtitle: "Лабораторная работа №4"
+author:
+  - Калашникова Д. В.
+institute:
+  - Российский университет дружбы народов, Москва, Россия
+date: 17 сентября 2026
+lang: ru-RU
+babel-lang: russian
+babel-otherlangs: english
+
+format:
+  beamer:
+    toc: false
+    slide-level: 2
+    aspectratio: 169
+    section-titles: true
+    theme: metropolis
+    pdf-engine: lualatex
+    include-in-header:
+      text: |
+        \metroset{progressbar=frametitle,sectionpage=progressbar,numbering=fraction}
+        \setsansfont{DejaVu Sans}
+        \setmonofont{DejaVu Sans Mono}
+---
+
+# Информация
+
+## Докладчик
+
+:::::::::::::: {.columns align=center}
+::: {.column width="70%"}
+
+  * Калашникова Дарья Викторовна
+  * Студент
+  * Российский университет дружбы народов
+  * [1132243108@pfur.ru](mailto:1132243108@pfur.ru)
+
+:::
+::: {.column width="30%"}
+
+![](image/kalashnikova.jpeg)
+
+:::
+::::::::::::::
+
+## Цель работы
+
+Приобретение практических навыков по установке и базовому конфигурированию HTTP-сервера Apache.
+
+## Запуск сервера
+
+![Запуск сервера](image/1.png){#fig-001 width=60%}
+
+## Установка пакетов
+
+![Установка пакетов](image/2.png){#fig-002 width=60%}
+
+## /etc/httpd/conf/httpd.conf
+
+![/etc/httpd/conf/httpd.conf](image/3.png){#fig-003 width=60%}
+
+## /etc/httpd/conf/magic
+
+![/etc/httpd/conf/magic](image/4.png){#fig-004 width=60%}
+
+## /etc/httpd/conf.d/autoindex.conf
+
+![/etc/httpd/conf.d/autoindex.conf](image/5.png){#fig-005 width=60%}
+
+## /etc/httpd/conf.d/manual.conf
+
+![/etc/httpd/conf.d/manual.conf](image/6.png){#fig-006 width=60%}
+
+## /etc/httpd/conf.d/userdir.conf
+
+![/etc/httpd/conf.d/userdir.conf](image/7.png){#fig-007 width=60%}
+
+## /etc/httpd/conf.d/fcgid.conf
+
+![/etc/httpd/conf.d/fcgid.conf](image/8.png){#fig-008 width=60%}
+
+## /etc/httpd/conf.d/ssl.conf
+
+![/etc/httpd/conf.d/ssl.conf](image/9.png){#fig-009 width=60%}
+
+## Настройка firewall
+
+![Настройка firewall](image/10.png){#fig-010 width=60%}
+
+## journalctl
+
+![journalctl](image/11.png){#fig-011 width=60%}
+
+## Запуск службы httpd
+
+![запуск службы httpd](image/12.png){#fig-012 width=60%}
+
+## Лог об успешном запуске
+
+![Лог об успешном запуске](image/13.png){#fig-013 width=60%}
+
+## Запуск клиента
+
+![Запуск клиента](image/14.png){#fig-014 width=60%}
+
+## Страница по умолчанию
+
+![Страница по умолчанию](image/15.png){#fig-015 width=60%}
+
+## /var/log/httpd/error_log
+
+![/var/log/httpd/error_log](image/16.png){#fig-016 width=60%}
+
+## /var/log/httpd/access_log
+
+![/var/log/httpd/access_log](image/17.png){#fig-017 width=60%}
+
+## Остановка службы named
+
+![Остановка службы named](image/18.png){#fig-018 width=60%}
+
+## Файл зоны /var/named/master/fz/dvkalashnikova
+
+![Файл зоны /var/named/master/fz/dvkalashnikova](image/19.png){#fig-019 width=60%}
+
+## Файл зоны /var/named/master/rz/192.168.1
+
+![Файл зоны /var/named/master/rz/192.168.1](image/20.png){#fig-020 width=60%}
+
+## Удаление журналов
+
+![Удаление журналов](image/21.png){#fig-021 width=60%}
+
+## Создание конфигурационных файлов
+
+![Создание конфигурационных файлов](image/22.png){#fig-022 width=60%}
+
+## server.dvkalashnikova.net
+
+![server.dvkalashnikova.net](image/23.png){#fig-023 width=60%}
+
+## www.dvkalashnikova.net
+
+![www.dvkalashnikova.net](image/24.png){#fig-024 width=60%}
+
+## Файлы index.html
+
+![Файлы index.html](image/25.png){#fig-025 width=60%}
+
+## Обновление меток и перезапуск службы
+
+![Обновление меток и перезапуск службы](image/26.png){#fig-026 width=60%}
+
+## server.dvkalashnikova.net
+
+![server.dvkalashnikova.net](image/27.png){#fig-027 width=60%}
+
+## Обновление конфигурации vagrant
+
+![Обновление конфигурации vagrant](image/28.png){#fig-028 width=60%}
+
+## Скрипт http.sh
+
+![Скрипт http.sh](image/29.png){#fig-029 width=60%}
+
+## Vagrantfile
+
+![Vagrantfile](image/30.png){#fig-030 width=60%}
+
+## Выводы
+
+В результате выполнения лабораторной работы были получены навыки работы и настройки http сервера
