@@ -1,0 +1,218 @@
+---
+lang: ru-RU
+title: Презентация
+subtitle: Лабораторная работа 6
+author:
+  - Калашникова Д. В.
+institute:
+  - Российский университет дружбы народов, Москва, Россия
+date: 7 октября 2026
+
+## i18n babel
+babel-lang: russian
+babel-otherlangs: english
+
+## Formatting pdf
+toc: false
+toc-title: Содержание
+slide_level: 2
+aspectratio: 169
+section-titles: true
+theme: metropolis
+header-includes:
+  - \metroset{progressbar=frametitle,sectionpage=progressbar,numbering=fraction}
+  - \setsansfont{DejaVu Sans}
+  - \setmonofont{DejaVu Sans Mono}
+---
+
+# Информация
+
+## Докладчик
+
+:::::::::::::: {.columns align=center}
+::: {.column width="70%"}
+
+  * Калашникова Дарья Викторовна
+  * Студент
+  * Российский университет дружбы народов
+  * [1132243108@pfur.ru](mailto:1132243108@pfur.ru)
+
+:::
+::: {.column width="30%"}
+
+![](image/kalashnikova.jpeg)
+
+:::
+::::::::::::::
+
+## Цель работы
+
+Освоить установку и настройку системы управления базами данных на примере MariaDB.
+
+## Запуск сервера
+
+Поднимаем сервер через vagrant.
+
+![Запуск сервера](image/1.png){#fig:001 width=60%}
+
+## Установка пакета
+
+Ставим пакет MariaDB.
+
+![Установка пакета](image/2.png){#fig:002 width=60%}
+
+## /etc/my.cnf
+
+Основной конфиг MariaDB: секция client-server и директива !includedir /etc/my.cnf.d.
+
+![/etc/my.cnf](image/3.png){#fig:003 width=60%}
+
+## auth_gssapi.cnf
+
+Подключение плагина аутентификации GSSAPI (Kerberos); строка закомментирована.
+
+![auth_gssapi.cnf](image/4.png){#fig:004 width=60%}
+
+## mariadb-server.cnf
+
+Главный конфиг сервера: datadir, socket, log-error, pid-file, секция Galera.
+
+![mariadb-server.cnf](image/5.png){#fig:005 width=40%}
+
+## provider_lz4.cnf
+
+Подключение плагина сжатия LZ4 с принудительной загрузкой.
+
+![provider_lz4.cnf](image/6.png){#fig:006 width=60%}
+
+## spider.cnf
+
+Подключение движка хранения Spider для шардинга; строка закомментирована.
+
+![spider.cnf](image/7.png){#fig:007 width=60%}
+
+## client.cnf
+
+Конфиг клиентских приложений: секции client и client-mariadb.
+
+![client.cnf](image/8.png){#fig:008 width=60%}
+
+## mysql-clients.cnf
+
+Шаблон с пустыми секциями для отдельных утилит MariaDB.
+
+![mysql-clients.cnf](image/9.png){#fig:009 width=60%}
+
+## provider_lzo.cnf
+
+Подключение плагина сжатия LZO.
+
+![provider_lzo.cnf](image/10.png){#fig:010 width=60%}
+
+## enable_encryption.preset
+
+Пресет для включения шифрования данных Aria, InnoDB, binlog и временных файлов.
+
+![enable_encryption.preset](image/11.png){#fig:011 width=60%}
+
+## provider_bzip2.cnf
+
+Подключение плагина сжатия bzip2.
+
+![provider_bzip2.cnf](image/12.png){#fig:012 width=60%}
+
+## provider_snappy.cnf
+
+Подключение плагина сжатия Snappy.
+
+![provider_snappy.cnf](image/13.png){#fig:013 width=60%}
+
+## Запуск mariadb
+
+Запускаем службу, ставим в автозагрузку, проверяем порт 3306 через ss.
+
+![Запуск mariadb](image/14.png){#fig:014 width=60%}
+
+## Настройка БД
+
+Выполняем mysql_secure_installation.
+
+![Настройка БД](image/15.png){#fig:015 width=40%}
+
+## Подключение к БД
+
+Подключаемся к базе и выводим справку.
+
+![Подключение к БД](image/16.png){#fig:016 width=60%}
+
+## Списки БД
+
+На этом шаге в базе четыре записи.
+
+![Списки БД](image/17.png){#fig:017 width=60%}
+
+## Статус БД
+
+Версия 10.11.18-MariaDB, id 12, uptime 8 min 2 sec, questions 23, avg 0.047.
+
+![Статус БД](image/18.png){#fig:018 width=40%}
+
+## Создание utf8.cnf
+
+Создаём /etc/my.cnf.d/utf8.cnf для смены кодировки.
+
+![Создание файла конфигурации](image/19.png){#fig:019 width=60%}
+
+## Содержание файла utf8
+
+Прописываем utf8 как кодировку по умолчанию.
+
+![Содержание файла utf8](image/20.png){#fig:020 width=60%}
+
+## Успешная смена кодировки
+
+Перезапускаем mariadb — latin1 меняется на utf8.
+
+![Успешная смена кодировки](image/21.png){#fig:021 width=40%}
+
+## Наполнение таблицы
+
+Создаём БД addressbook, таблицу city и добавляем Иванова, Петрова, Сидорова.
+
+![Наполнение таблицы](image/22.png){#fig:022 width=40%}
+
+## Проверка прав доступа
+
+Создаём пользователя dvkalashnikova и даём доступ к БД.
+
+![Проверка прав доступа для нового пользователя](image/23.png){#fig:023 width=40%}
+
+## Бэкапы и сохранение vagrant
+
+Делаем обычный, сжатый и с таймстемпом бэкапы, сохраняем конфиги.
+
+![Бэкапы и сохранение vagrant](image/24.png){#fig:024 width=60%}
+
+## mysql.sh
+
+Прописываем в скрипте команды настройки БД.
+
+![mysql.sh](image/25.png){#fig:025 width=60%}
+
+## Vagrantfile
+
+Добавляем автозагрузку mysql.sh.
+
+![Vagrantfile](image/26.png){#fig:026 width=60%}
+
+## Выводы
+
+Получены навыки работы с базами данных и их настройкой.
+
+## Список литературы
+
+1. MariaDB Foundation. MariaDB Documentation [Электронный ресурс]. — URL: https://mariadb.com/kb/en/documentation/ (дата обращения: 07.10.2026).
+
+2. MariaDB Foundation. MariaDB Server Configuration Files [Электронный ресурс]. — URL: https://mariadb.com/kb/en/configuring-mariadb-with-option-files/ (дата обращения: 07.10.2026).
+
+3. Red Hat. Documentation [Электронный ресурс]. — URL: https://docs.redhat.com/ (дата обращения: 07.10.2026).
