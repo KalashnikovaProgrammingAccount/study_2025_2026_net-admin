@@ -1,0 +1,247 @@
+---
+lang: ru-RU
+title: "Лабораторная работа"
+subtitle: "Номер 8"
+author:
+  - Калашникова Д. В.
+institute:
+  - Российский университет дружбы народов, Москва, Россия
+date: 22 октября 2026
+
+format:
+  beamer:
+    toc: false
+    slide-level: 2
+    aspectratio: 169
+    section-titles: true
+    theme: metropolis
+    pdf-engine: lualatex
+    include-in-header:
+      text: |
+        \metroset{progressbar=frametitle,sectionpage=progressbar,numbering=fraction}
+        \setsansfont{DejaVu Sans}
+        \setmonofont{DejaVu Sans Mono}
+  revealjs:
+    theme: simple
+    slide-number: true
+    transition: slide
+    incremental: false
+    toc: false
+    embed-resources: true
+---
+
+# Информация
+
+## Докладчик
+
+:::::::::::::: {.columns align=center}
+::: {.column width="70%"}
+
+  * Калашникова Дарья Викторовна
+  * Студент
+  * Российский университет дружбы народов
+  * [1132243108@pfur.ru](mailto:1132243108@pfur.ru)
+
+:::
+::: {.column width="30%"}
+
+![](image/kalashnikova.jpeg)
+
+:::
+::::::::::::::
+
+## Цель работы
+
+Получить практические навыки установки и настройки SMTP-сервера
+
+## Установка Postfix
+
+Сначала заходим на сервер под root и ставим postfix
+
+![Установка Postfix](image/1.png){#fig-001 width=60%}
+
+## Установка s-nail
+
+Следом устанавливаем утилиту s-nail
+
+![Установка s-nail](image/2.png){#fig-002 width=60%}
+
+## Предварительная настройка
+
+Открываем в фаерволе доступ к smtp, восстанавливаем контексты selinux и запускаем postfix
+
+![Предварительная настройка](image/3.png){#fig-003 width=60%}
+
+## postconf
+
+Выполняем postconf — команда выводит полный список параметров конфигурации
+
+![postconf](image/4.png){#fig-004 width=60%}
+
+## Обновление конфигурации postfix
+
+Смотрим значения myorigin и mydomain. Меняем myorigin на доменное имя, проверяем через postfix check и перезапускаем службу
+
+![Обновление конфигурации postfix](image/5.png){#fig-005 width=60%}
+
+## postconf -n
+
+Командой postconf -n выводим только те настройки, которые отличаются от значений по умолчанию
+
+![postconf -n](image/6.png){#fig-006 width=60%}
+
+## Настройка протоколов
+
+Жёстко фиксируем имя домена. Оставляем только ipv4 и перезапускаем postfix
+
+![Обновление настроек протоколов](image/7.png){#fig-007 width=60%}
+
+## Отправка письма
+
+Пробуем отправить письмо самому себе со своей учётной записи
+
+![Отправка письма](image/8.png){#fig-008 width=60%}
+
+## Лог почты
+
+В логе из /var/log/maillog видим «delivered to mailbox» — письмо доставлено
+
+![Лог почты](image/9.png){#fig-009 width=60%}
+
+## /var/spool/mail
+
+Проверяем, что в /var/spool/mail появились файлы пользователей
+
+![/var/spool/mail](image/10.png){#fig-010 width=60%}
+
+## Установка на клиенте
+
+Переходим на клиентскую машину, заходим под root и тоже ставим postfix
+
+![Установка Postfix](image/11.png){#fig-011 width=60%}
+
+## Установка s-nail на клиенте
+
+Ставим и s-nail
+
+![Установка s-nail](image/12.png){#fig-012 width=60%}
+
+## Настройка протоколов на клиенте
+
+Повторяем действия с сервера: оставляем только ipv4 и перезапускаем postfix
+
+![Настройка протоколов на клиенте](image/13.png){#fig-013 width=60%}
+
+## Отправка с клиента
+
+Отправляем с клиента письмо на сервер
+
+![Отправка письма](image/14.png){#fig-014 width=60%}
+
+## Логи на сервере
+
+На сервере в логах ничего нового не появляется
+
+![Логи почты](image/15.png){#fig-015 width=60%}
+
+## Разрешение писем из локальной сети
+
+Меняем inet_interfaces с localhost на all, добавляем в mynetworks 192.168.0.0 и перезапускаем postfix
+
+![Включение получения писем из локальной сети](image/16.png){#fig-016 width=60%}
+
+## Повторная отправка
+
+Снова пробуем отправить письмо с клиента
+
+![Повторная отправка письма](image/17.png){#fig-017 width=60%}
+
+## Успешная доставка
+
+В логах новое письмо EBE862044889, в предпоследней строке — delivered to mailbox
+
+![Успешная отправка письма согласно логам](image/18.png){#fig-018 width=60%}
+
+## Письмо пользователю
+
+Пробуем отправить письмо не на устройство, а пользователю
+
+![Отправка письма пользователю](image/19.png){#fig-019 width=60%}
+
+## Неуспешная доставка
+
+Письмо 7482D204488 не доставляется — No route to host
+
+![Неуспешная доставка письма](image/20.png){#fig-020 width=60%}
+
+## postqueue -p
+
+Информацию о зависшем письме смотрим командой postqueue -p
+
+![postqueue -p](image/21.png){#fig-021 width=60%}
+
+## Файл прямой зоны
+
+Правим файл прямой зоны — добавляем запись о почтовом сервере
+
+![Файл прямой зоны](image/22.png){#fig-022 width=60%}
+
+## Файл обратной зоны
+
+Соответствующие изменения в обратной зоне
+
+![Файл обратной зоны](image/23.png){#fig-023 width=60%}
+
+## Обновление списков назначения
+
+Обновляем список, перезапускаем postfix, selinux и dns, затем postqueue -f
+
+![Обновление списков назначения почты](image/24.png){#fig-024 width=60%}
+
+## Письмо доставлено
+
+В логах видно, что письмо доставлено
+
+![Лог об успешно доставленном письме](image/25.png){#fig-025 width=60%}
+
+## Сохранение конфигурации
+
+Сохраняем конфигурацию для vagrant с сервера и создаём mail.sh
+
+![Сохранение конфигурации](image/26.png){#fig-026 width=60%}
+
+## mail.sh
+
+В mail.sh записываем скрипт
+
+![mail.sh](image/27.png){#fig-027 width=60%}
+
+## mail.sh для клиента
+
+Переключаемся на клиент и тоже создаём mail.sh
+
+![Создание скрипта mail.sh для клиента](image/28.png){#fig-028 width=60%}
+
+## Скрипт для клиента
+
+Скрипт для клиента выглядит так
+
+![mail.sh для клиента](image/29.png){#fig-029 width=60%}
+
+## Vagrantfile
+
+В vagrantfile добавляем запуск скриптов для клиента и сервера
+
+![vagrantfile](image/30.png){#fig-030 width=60%}
+
+## Выводы
+
+В ходе лабораторной работы получены навыки настройки SMTP-сервера
+
+## Список литературы
+
+1. Postfix Project. Postfix Documentation [Электронный ресурс]. — URL: https://www.postfix.org/documentation.html (дата обращения: 13.10.2026)
+
+2. Red Hat. Configuring email servers on Red Hat Enterprise Linux [Электронный ресурс]. — URL: https://docs.redhat.com/ (дата обращения: 13.10.2026)
+
+3. IETF. RFC 5321: Simple Mail Transfer Protocol [Электронный ресурс]. — URL: https://datatracker.ietf.org/doc/html/rfc5321 (дата обращения: 13.10.2026)
